@@ -1,0 +1,13 @@
+.case {
+  width: 12.5%;
+  height: 12.5%;
+  color: rgba(0, 0, 0, 0.282);
+}
+
+.black {
+  background-color: #b58863;
+}
+
+.white {
+  background-color: #f0d9b5;
+}

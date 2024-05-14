@@ -1,1 +1,10 @@
+/* General */
 @import "./reset.css";
+@import "./App.css";
+
+/* Pages */
+@import "./Pages/Home.css";
+
+/* Composants */
+@import "./Components/ChessBoard/ChessBoard.css";
+@import "./Components/Case/Case.css";
