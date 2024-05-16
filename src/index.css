@@ -7,4 +7,8 @@
 
 /* Composants */
 @import "./Components/ChessBoard/ChessBoard.css";
-@import "./Components/Case/Case.css";
+@import "./Components/CaseRender/CaseRender.css";
+
+/* Icons */
+
+@import "./icons/pieces.css";
