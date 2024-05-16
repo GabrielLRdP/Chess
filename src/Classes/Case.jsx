@@ -23,10 +23,10 @@ class Case {
   legalMoves() {}
 
   static createAll(fen) {
-    fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR";
+    fen = "r1bk3r/p2pBpNp/n4n2/1p1NP2P/6P1/3P4/P1P1K3/q5b1";
     let caseList = [];
 
-    let caseColor = "black";
+    let caseColor = "white";
     for (let rows = 8; rows > 0; rows--) {
       for (let columns = 1; columns < 9; columns++) {
         const piece = fenTraductor(fen, columns, rows);
@@ -36,7 +36,7 @@ class Case {
       }
       caseColor === "black" ? (caseColor = "white") : (caseColor = "black");
     }
-
+    console.log(caseList);
     return caseList;
   }
 
