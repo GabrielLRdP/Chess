@@ -10,28 +10,34 @@ class Case {
     this.column = column;
   }
 
-  render(color, coord, piece) {
+  convertToComponent() {
     return (
       <CaseRender
-        color={color}
-        piece={piece}
-        key={String(coord[0]) + String(coord[1])}
+        color={this.color}
+        piece={this.piece}
+        key={String(this.column) + String(this.row)}
+        decoration={""}
       />
     );
   }
 
   legalMoves() {}
 
+  //create all will create a list of all cases, from top to bottom, left to right
   static createAll(fen) {
-    fen = "r1bk3r/p2pBpNp/n4n2/1p1NP2P/6P1/3P4/P1P1K3/q5b1";
     let caseList = [];
 
+    //we initialize the color of the first case (a8) wich is white, we will then alternate
     let caseColor = "white";
-    for (let rows = 8; rows > 0; rows--) {
-      for (let columns = 1; columns < 9; columns++) {
-        const piece = fenTraductor(fen, columns, rows);
-        const newCase = new Case(caseColor, "", "", columns, rows);
-        caseList.push(newCase.render(caseColor, [columns, rows], piece));
+
+    for (let row = 8; row > 0; row--) {
+      for (let column = 1; column < 9; column++) {
+        const piece = fenTraductor(fen, column, row);
+
+        const newCase = new Case(caseColor, piece, "", column, row);
+
+        caseList.push(newCase.convertToComponent());
+
         caseColor === "black" ? (caseColor = "white") : (caseColor = "black");
       }
       caseColor === "black" ? (caseColor = "white") : (caseColor = "black");
