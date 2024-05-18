@@ -55,9 +55,6 @@ const fenTraductor = (fen, column, row) => {
 
   //   translatedFen = translatedFen.split("").reverse().join("");
 
-  console.log("fen ===", fen);
-  console.log("traducted fen", translatedFen);
-
   const elementIndex = 8 * (9 - row - 1) + column - 1;
   const piece = translatedFen.charAt(elementIndex);
 

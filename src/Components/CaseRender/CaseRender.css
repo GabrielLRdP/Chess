@@ -23,3 +23,7 @@
 .white-piece {
   color: white;
 }
+
+.selected {
+  background-color: red;
+}
