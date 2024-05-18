@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 
-const CaseRender = ({ color, piece, thisCase }) => {
-  const [caseClass, setCaseClass] = useState("case " + color);
+const CaseRender = ({ thisCase }) => {
+  const [caseClass, setCaseClass] = useState("case " + thisCase.color);
   // const alphabet = "abcdefgh";
 
   useEffect(() => {
     if (thisCase.isSelected) {
-      setCaseClass("case " + color + " " + "selected");
+      setCaseClass("case " + thisCase.color + " " + "selected");
     } else {
-      setCaseClass("case " + color);
+      setCaseClass("case " + thisCase.color);
     }
   }, [thisCase.isSelected]);
 
@@ -17,10 +17,8 @@ const CaseRender = ({ color, piece, thisCase }) => {
     if (!thisCase.isSelected) {
       newSelectedCase = [thisCase.row, thisCase.column];
       thisCase.isSelected = true;
-      // setCaseClass("case " + color + " " + "selected");
     } else {
       thisCase.isSelected = false;
-      // setCaseClass("case " + color);
     }
     thisCase.setSelectedCase(newSelectedCase);
     console.log(newSelectedCase);
@@ -34,7 +32,7 @@ const CaseRender = ({ color, piece, thisCase }) => {
       }}
       className={caseClass}
     >
-      {piece}
+      {thisCase.piece}
     </div>
   );
 };

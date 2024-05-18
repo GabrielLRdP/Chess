@@ -1,5 +1,5 @@
 import CaseRender from "../Components/CaseRender/CaseRender";
-import { fenTraductor } from "../functions/fenTraductor";
+import { createAllCases } from "../functions/createAllCases";
 
 class Case {
   constructor(color, piece, decoration, column, row, setSelectedCase) {
@@ -16,11 +16,8 @@ class Case {
   convertToComponent() {
     return (
       <CaseRender
-        color={this.color}
-        piece={this.piece}
         key={String(this.column) + String(this.row)}
         thisCase={this}
-        decoration={""}
       />
     );
   }
@@ -29,37 +26,7 @@ class Case {
 
   //create all will create a list of all cases, from top to bottom, left to right
   static createAll(fen, selectedCase, setSelectedCase) {
-    let caseList = [];
-
-    //we initialize the color of the first case (a8) wich is white, we will then alternate
-    let caseColor = "white";
-
-    for (let row = 8; row > 0; row--) {
-      for (let column = 1; column < 9; column++) {
-        const piece = fenTraductor(fen, column, row);
-
-        const newCase = new Case(
-          caseColor,
-          piece,
-          "",
-          column,
-          row,
-          setSelectedCase
-        );
-
-        if (selectedCase[0] === row && selectedCase[1] === column) {
-          newCase.isSelected = true;
-        } else {
-          newCase.isSelected = false;
-        }
-
-        caseList.push(newCase.convertToComponent());
-
-        caseColor === "black" ? (caseColor = "white") : (caseColor = "black");
-      }
-      caseColor === "black" ? (caseColor = "white") : (caseColor = "black");
-    }
-    return caseList;
+    return createAllCases(fen, selectedCase, setSelectedCase);
   }
 
   static updateAll() {}
