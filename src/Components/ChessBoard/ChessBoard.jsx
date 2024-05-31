@@ -3,7 +3,7 @@ import Case from "../../Classes/Case";
 import { useEffect, useState } from "react";
 
 const ChessBoard = () => {
-  const [position, setposition] = useState(
+  const [fen, setFen] = useState(
     "rnb2bnr/pp2kppp/2q5/2ppp3/5P2/5N2/PPPPP1PP/RNBQKB1R"
   );
   const [caseList, setCaseList] = useState();
@@ -12,14 +12,15 @@ const ChessBoard = () => {
   useEffect(() => {
     setCaseList(
       Case.createAll(
-        position,
+        fen,
+        setFen,
         selectedCase,
         setSelectedCase,
         caseList,
         setCaseList
       )
     );
-  }, [position, selectedCase]);
+  }, [fen, selectedCase]);
 
   return <div className="chess-board">{caseList}</div>;
 };

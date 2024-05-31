@@ -1,5 +1,6 @@
 import CaseRender from "../Components/CaseRender/CaseRender";
 import { createAllCases } from "../functions/createAllCases";
+import { makeMoove } from "../functions/makeMoove";
 
 class Case {
   constructor(
@@ -26,11 +27,13 @@ class Case {
     this.setCaseList = setCaseList;
   }
 
-  convertToComponent() {
+  convertToComponent(fen, setFen) {
     return (
       <CaseRender
         key={String(this.column) + String(this.row)}
         thisCase={this}
+        fen={fen}
+        setFen={setFen}
       />
     );
   }
@@ -38,15 +41,27 @@ class Case {
   legalMoves() {}
 
   //create all will create a list of all cases, from top to bottom, left to right
-  static createAll(fen, selectedCase, setSelectedCase, caseList, setCaseList) {
+  static createAll(
+    fen,
+    setFen,
+    selectedCase,
+    setSelectedCase,
+    caseList,
+    setCaseList
+  ) {
     return createAllCases(
       fen,
+      setFen,
       selectedCase,
       setSelectedCase,
       caseList,
       setCaseList
     );
   }
+
+  // static makeMoove(fen, originCase, targetCase, caseList, setCaseList) {
+  //   makeMoove(fen, originCase, targetCase, caseList, setCaseList);
+  // }
 
   static updateAll() {}
 }

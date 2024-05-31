@@ -4,6 +4,7 @@ import { toggleColor } from "./toggleColor";
 
 const createAllCases = (
   fen,
+  setFen,
   selectedCase,
   setSelectedCase,
   caseList,
@@ -40,7 +41,7 @@ const createAllCases = (
         newCase.isSelected = false;
       }
 
-      newCaseList.push(newCase.convertToComponent());
+      newCaseList.push(newCase.convertToComponent(fen, setFen));
 
       caseColor = toggleColor(caseColor);
     }

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { makeMoove } from "../../functions/makeMoove";
 
-const CaseRender = ({ thisCase }) => {
+const CaseRender = ({ thisCase, fen, setFen }) => {
   const [caseClass, setCaseClass] = useState("case " + thisCase.color);
   // const alphabet = "abcdefgh";
 
@@ -18,6 +18,8 @@ const CaseRender = ({ thisCase }) => {
     if (!thisCase.isSelected) {
       if (thisCase.selectedCase.row) {
         makeMoove(
+          fen,
+          setFen,
           thisCase.selectedCase,
           thisCase,
           thisCase.caseList,
@@ -31,9 +33,6 @@ const CaseRender = ({ thisCase }) => {
       thisCase.isSelected = false;
     }
     thisCase.setSelectedCase(newSelectedCase);
-    console.log(newSelectedCase);
-
-    console.log(thisCase);
   };
   return (
     <div
@@ -42,7 +41,7 @@ const CaseRender = ({ thisCase }) => {
       }}
       className={caseClass}
     >
-      {thisCase.piece}
+      {thisCase.piece.icon}
     </div>
   );
 };

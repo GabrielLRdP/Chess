@@ -41,7 +41,7 @@ const fenToPiece = (fen, column, row) => {
   const elementIndex = 8 * (9 - row - 1) + column - 1;
   const piece = translatedFen.charAt(elementIndex);
 
-  return trad[piece];
+  return { fenName: piece, icon: trad[piece] };
 };
 
 export { fenToPiece };
