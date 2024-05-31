@@ -6,7 +6,7 @@ const fenReductor = (fen) => {
   const numbers = fen.match(reg);
 
   numbers.forEach((element) => {
-    fen.replace(element, element.length.toString());
+    fen = fen.replace(element, element.length.toString());
   });
   return fen;
 };
