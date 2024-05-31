@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { makeMoove } from "../../functions/makeMoove";
 
 const CaseRender = ({ thisCase }) => {
   const [caseClass, setCaseClass] = useState("case " + thisCase.color);
@@ -10,13 +11,22 @@ const CaseRender = ({ thisCase }) => {
     } else {
       setCaseClass("case " + thisCase.color);
     }
-  }, [thisCase.isSelected]);
+  }, [thisCase.isSelected, thisCase.piece]);
 
-  const handleclick = () => {
-    let newSelectedCase = [-1, -1];
+  const handleClick = () => {
+    let newSelectedCase = {};
     if (!thisCase.isSelected) {
-      newSelectedCase = [thisCase.row, thisCase.column];
-      thisCase.isSelected = true;
+      if (thisCase.selectedCase.row) {
+        makeMoove(
+          thisCase.selectedCase,
+          thisCase,
+          thisCase.caseList,
+          thisCase.setCaseList
+        );
+      } else {
+        newSelectedCase = thisCase;
+        thisCase.isSelected = true;
+      }
     } else {
       thisCase.isSelected = false;
     }
@@ -28,7 +38,7 @@ const CaseRender = ({ thisCase }) => {
   return (
     <div
       onClick={() => {
-        handleclick();
+        handleClick();
       }}
       className={caseClass}
     >

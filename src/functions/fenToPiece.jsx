@@ -12,10 +12,11 @@ import {
   whiteRook,
   blackRook,
 } from "../icons/pieces";
+import { fenExpander } from "./fenExpander";
 
 // fen = "r1bk3r/p2pBpNp/n4n2/1p1NP2P/6P1/3P4/P1P1K3/q5b1";
 
-const fenTraductor = (fen, column, row) => {
+const fenToPiece = (fen, column, row) => {
   const trad = {
     r: blackRook,
     n: blackKnight,
@@ -31,26 +32,8 @@ const fenTraductor = (fen, column, row) => {
     P: whitePawn,
     0: null,
   };
-  let translatedFen = fen;
-  //1ère étape, on change notre chaine de caractère pour transformer les nombres en cases vides
 
-  const reg = new RegExp("\\d+", "g");
-  const numbers = fen.match(reg);
-
-  //fonction qui va convertir un nombre en une chaine de caractère contenant n fois 0
-  //exemple convert(3) => "000" convert (5) => "00000"
-  const convert = (num) => {
-    let str = "";
-    for (let i = 0; i < num; i++) {
-      str += "0";
-    }
-    return str;
-  };
-  // fen = "r1bk3r/p2pBpNp/n4n2/1p1NP2P/6P1/3P4/P1P1K3/q5b1";
-  numbers.forEach((element) => {
-    translatedFen = translatedFen.replace(element.toString(), convert(element));
-  });
-
+  let translatedFen = fenExpander(fen);
   translatedFen = translatedFen.replaceAll("/", "");
 
   //   translatedFen = translatedFen.split("").reverse().join("");
@@ -61,4 +44,4 @@ const fenTraductor = (fen, column, row) => {
   return trad[piece];
 };
 
-export { fenTraductor };
+export { fenToPiece };
