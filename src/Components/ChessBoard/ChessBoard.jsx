@@ -3,9 +3,7 @@ import Case from "../../Classes/Case";
 import { useEffect, useState } from "react";
 
 const ChessBoard = () => {
-  const [fen, setFen] = useState(
-    "rnb2bnr/pp2kppp/2q5/2ppp3/5P2/5N2/PPPPP1PP/RNBQKB1R"
-  );
+  const [fen, setFen] = useState("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR");
   const [caseList, setCaseList] = useState();
   const [selectedCase, setSelectedCase] = useState({});
 

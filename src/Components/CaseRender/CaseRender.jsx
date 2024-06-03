@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { makeMoove } from "../../functions/makeMoove";
+import { displayLegalMooves } from "../../functions/displayLegalMooves";
 
 const CaseRender = ({ thisCase, fen, setFen }) => {
   const [caseClass, setCaseClass] = useState("case " + thisCase.color);
@@ -11,7 +12,15 @@ const CaseRender = ({ thisCase, fen, setFen }) => {
     } else {
       setCaseClass("case " + thisCase.color);
     }
-  }, [thisCase.isSelected, thisCase.piece]);
+
+    if (thisCase.isLegalMoove) {
+      console.log("coucou");
+      let a = document.getElementById(
+        "legalMoove" + thisCase.row + thisCase.column
+      );
+      a.classList.remove("hidden");
+    }
+  }, [thisCase.isSelected, thisCase.piece, thisCase.isLegalMoove]);
 
   const handleClick = () => {
     let newSelectedCase = {};
@@ -28,6 +37,7 @@ const CaseRender = ({ thisCase, fen, setFen }) => {
       } else {
         newSelectedCase = thisCase;
         thisCase.isSelected = true;
+        displayLegalMooves(thisCase);
       }
     } else {
       thisCase.isSelected = false;
@@ -42,6 +52,10 @@ const CaseRender = ({ thisCase, fen, setFen }) => {
       className={caseClass}
     >
       {thisCase.piece.icon}
+      <div
+        className="legal-moove hidden"
+        id={"legalMoove" + thisCase.row + thisCase.column}
+      ></div>
     </div>
   );
 };
